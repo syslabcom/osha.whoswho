@@ -1,0 +1,9 @@
+Changelog for osha.whoswho
+
+    (name of developer listed in brackets)
+
+osha.whoswho - 0.1 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+

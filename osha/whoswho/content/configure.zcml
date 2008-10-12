@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="osha.whoswho">
+
+    <!-- configure your content components here -->
+
+    <!-- -*- extra stuff goes here -*- -->
+    <class class=".whoswho.whoswho">
+
+        <require
+            permission="zope2.View"
+            interface="..interfaces.Iwhoswho"
+            />
+
+        <require
+            permission="cmf.ModifyPortalContent"
+            set_schema="..interfaces.Iwhoswho"
+            />
+
+    </class>
+
+</configure>

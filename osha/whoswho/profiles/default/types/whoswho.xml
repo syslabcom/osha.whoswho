@@ -2,7 +2,7 @@
 <object name="whoswho"
    meta_type="Factory-based Type Information with dynamic views"
    i18n:domain="osha.whoswho" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <property name="title" i18n:translate="">whoswho</property>
+  <property name="title" i18n:translate="">Who's Who</property>
   <property name="description"
     i18n:translate="">Description of the Example Type</property>
   <property name="content_meta_type">whoswho</property>
@@ -13,9 +13,9 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
   <property name="allow_discussion">False</property>
-  <property name="default_view">base_view</property>
+  <property name="default_view">whoswho_view</property>
   <property name="view_methods">
-    <element value="base_view" />
+    <element value="whoswho_view" />
   </property>
   <alias from="(Default)" to="(dynamic view)" />
   <alias from="edit" to="atct_edit" />

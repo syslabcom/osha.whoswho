@@ -5,6 +5,27 @@
 
     <include package="plone.app.contentmenu" />
 
+    <browser:page
+        for="osha.whoswho.interfaces.Iwhoswho"
+        name="whoswho_view"
+        class=".whoswhoView.WhoswhoView"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="whoswho_alphabetical"
+        class=".index_alphabetical.IndexAlphabetical"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="whoswho_keyword"
+        class=".index_keyword.IndexKeyword"
+        permission="zope2.View"
+    />
+
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>

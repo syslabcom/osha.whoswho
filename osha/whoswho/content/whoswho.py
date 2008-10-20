@@ -72,6 +72,8 @@ schema = Schema((
         ),
         required=False,
         schemata="default",
+        default_content_type = 'text/html',
+        default_output_type = 'text/html',
         searchable=True,
     ),
     TextField(
@@ -173,7 +175,7 @@ class whoswho(base.ATCTContent):
     def getWhoswho_type_vocabulary(self):
         """
         """
-        return self._Vocabulary('whoswho-type')
+        return self._Vocabulary('WhosWhoType')
 
     def _Vocabulary(self, vocab_name):
         dl = DisplayList()

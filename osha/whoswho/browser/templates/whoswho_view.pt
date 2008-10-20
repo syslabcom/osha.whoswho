@@ -1,0 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+          
+<div metal:fill-slot="main" i18n:domain="osha"
+    
+            tal:define="text here/getText;
+            title here/Title;
+            description here/Description;
+            url here/getUrl;
+            email here/getEmail;
+            address here/getAddress;
+            activities here/getActivities;
+            targets here/getTargets;
+            tel here/getTel;
+            fax here/getFax;
+            sponsorUrl here/getSponsorUrl;
+            sponsorName here/getSponsorName;
+            relatedOrgUrl here/getRelatedOrgUrl;
+            relatedOrgName here/getRelatedOrgName;
+            itemtype python:here.getTypeInfo().Title();
+            len_text python:len(text);
+            ">
+
+    <div tal:replace="structure provider:plone.contentviews" />
+
+     <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+    <h1 tal:content="python:here.title_or_id()" class="documentFirstHeading">
+      Title or id
+    </h1>
+
+     <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+
+        <span class="documentByLine">
+            <span i18n:translate="label_published">published:</span> 
+            <span tal:on-error="python:toLocalizedTime('2000/01/01', long_format=0)"
+                  tal:replace="python:toLocalizedTime(here.getPublication_date(), long_format=False)"/>
+        </span>
+
+    <div id="description">
+        <div tal:replace="description" />
+    </div>
+    
+
+     <div tal:replace="structure provider:plone.abovecontentbody" />
+
+    <div id="url"
+        tal:condition="python:len(url)>0">
+        <h3 i18n:translate="label_website">Website</h3>
+        <a href="" tal:attributes="href url" tal:content="url"/>
+    </div>
+    
+    <div id="email"
+        tal:condition="python:len(email)>0">
+        <h3 i18n:translate="label_email">E-mail</h3>
+        <a href="" tal:attributes="href string:mailto:${email}" tal:content="email"/>
+    </div>    
+     
+    <div id="tel"
+        tal:condition="python:len(tel)>0">
+        <h3 i18n:translate="label_telephone">Telephone</h3>
+        <div tal:replace="tel"/>
+    </div>
+    
+    <div id="fax"
+        tal:condition="python:len(fax)>0">
+        <h3 i18n:translate="label_fax">Fax</h3>
+        <div tal:replace="fax"/>
+    </div>    
+    
+    <div id="address"
+        tal:condition="python:len(address)>0">
+        <h3 i18n:translate="label_address">Address</h3>
+        <div tal:replace="structure python:address.replace('\n', '<br>')"/>
+    </div>    
+    
+    <div id="targets"
+        tal:condition="python:len(targets)>0">
+        <h3 i18n:translate="label_targets">Targets</h3>
+        <div tal:replace="structure python:targets.replace('\n', '<br>')"/>
+    </div>    
+    
+    <div id="activities" 
+        tal:condition="python:len(activities)>0">
+        <h3 i18n:translate="label_activities">Activities</h3>
+        <div tal:replace="structure python:activities.replace('\n', '<br>')"/>
+    </div>    
+    
+    <div id="sponsor" tal:condition="python:len(sponsorUrl)>0 or len(sponsorName)>0">
+        <h3 i18n:translate="label_sponsor">Sponsor</h3>
+        <span tal:condition="python:len(sponsorUrl)>0">
+            <a href="" tal:attributes="href sponsorUrl"><div tal:replace="structure python:
+                len(sponsorName)>0 and sponsorName.replace('\n', '<br>') or sponsorUrl"/></a>
+        </span>
+        <span tal:condition="python:len(sponsorUrl)==0">
+            <div tal:replace="structure python:sponsorName.replace('\n', '<br>')"/>
+        </span>
+    </div>
+    
+    
+    <div id="relatedOrg" tal:condition="python:len(relatedOrgUrl)>0 or len(relatedOrgName)>0">
+        <h3 i18n:translate="label_relatedOrg">Related organisation</h3>
+        <span tal:condition="python:len(relatedOrgUrl)>0">
+            <a href="" tal:attributes="href relatedOrgUrl"><div 
+                tal:replace="structure python:len(relatedOrgName)>0 and relatedOrgName.replace('\n', '<br>') or
+                 relatedOrgUrl"/></a>
+        </span>
+        <span tal:condition="python:len(relatedOrgUrl)==0">
+            <div tal:replace="structure python:relatedOrgName.replace('\n', '<br>')"/>
+        </span>
+    </div>    
+    
+    
+    
+    <div id="bodyContent"
+         class="stx"
+         tal:condition="len_text">
+         <h3 i18n:translate="label_summary">Summary</h3>
+        <div tal:replace="structure text" 
+             tal:on-error="string:this page contains errors"  />
+    </div>
+    
+     <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    
+</div>
+
+</body>
+
+</html>
+
+ 

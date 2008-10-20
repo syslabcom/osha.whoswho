@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="osha">
+
+<metal:cssslot fill-slot="css_slot">
+  <style type="text/css">
+  #db_results dd { background-color: transparent; margin-left: 0; padding-left: 2em !important; border-bottom: 1px dotted gray; padding: 2px; } 
+  .keylist {  list-style-type: none !important; list-style-image: none !important;}
+  .keylist li { padding: 1px; margin:0; }
+  .current_term { background-color: #ccc; }
+  .resultcol {float:left; width:48%; padding-right:1%;}
+  .detailcol {float:left; width:48%; border: 1px dashed gray; padding:0 1%; background-color: #eee;}
+  .detailcol h3 { border-bottom: 1px solid gray;  margin-bottom:1.5em;}
+  </style>
+
+</metal:cssslot>
+
+<div metal:fill-slot="main" i18n:domain="osha"
+       tal:define="alphabet view/getAlphabet;
+                   resultsList view/resultsByLetter;
+                   letter view/getLetter |string:;
+                   term_id view/getTerm_id |string:;
+                   ">
+    
+    <div id="alphabetical-index">
+        
+        <h1 class="documentFirstHeading" i18n:translate="alphabetical_index">Alphabetical Index of the Multilingual Thesaurus</h1>
+
+        <div style="text-align:center">
+            <span tal:repeat="alpha alphabet">
+                
+                <a href="" rel="nofollow"
+                   tal:attributes="href string:${request/URL}?letter=${alpha}">                
+                    <strong style="font-size: larger" tal:content="alpha" />
+                </a>
+                
+                <span tal:omit-tag="" tal:condition="not:repeat/alpha/end">|</span> 
+            
+            </span>
+            
+        </div>    
+
+
+
+        <div tal:condition="view/getLetter" 
+             tal:define="lenresults python:len(resultsList);
+                         modulo python: lenresults % 3;
+                         itemspercol python:modulo == 0 and lenresults/3 or lenresults/3+1;
+                         colA python:resultsList[:itemspercol];
+                         colB python:resultsList[itemspercol:2*itemspercol];
+                         colC python:resultsList[2*itemspercol:]">
+            <h2>
+                <span tal:content="view/getLetter">Letter</span>
+            </h2>
+            <div id="resultcolA" class="resultcol">
+                <ul class="keylist" >
+                    <tal:repeat tal:repeat="key resultsList">
+                    <dt tal:define="key_caption python: key[0]; key_term_id python:key[1]"
+                        tal:attributes="class python: key_term_id==term_id and 'current_term' or ''"> 
+                        <a href="" rel="nofollow"
+                           tal:content="key_caption"
+                           tal:attributes="href python:key[2]"/>
+                    </dt>
+                    <dd tal:content="python:key[3]"></dd>
+                    </tal:repeat>
+                </ul>
+            </div>
+        
+        </div>
+
+    </div>
+
+
+
+</div>
+</html> 

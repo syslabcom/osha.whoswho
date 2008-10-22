@@ -25,7 +25,6 @@
             len_text python:len(text);
             ">
 
-    <div tal:replace="structure provider:plone.contentviews" />
 
      <div tal:replace="structure provider:plone.abovecontenttitle" />
 

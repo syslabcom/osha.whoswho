@@ -4,12 +4,13 @@ from Products.Five.browser import BrowserView
 from zope.interface import implements
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
-from osha.whoswho.interfaces import IWhosWhoView
+#from osha.whoswho.interfaces import IWhosWhoView
+from plone.app.layout.globals.interfaces import IViewView
 
 class WhoswhoView(BrowserView):
     """View for displaying WhosWho Items by alphabet
     """
-    implements(IWhosWhoView)
+    implements(IViewView)
     template = ViewPageTemplateFile('templates/whoswho_view.pt')
 
     def __call__(self):

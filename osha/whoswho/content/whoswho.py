@@ -137,7 +137,7 @@ schema = Schema((
         searchable=True,
     ),
     LinesField(
-        name='whoswho_type',
+        name='WhosWhoType',
         languageIndependent=True,
         widget=MultiSelectionWidget(
             label=_(u"label_whoswho_type", default=u"Who's Who type"),

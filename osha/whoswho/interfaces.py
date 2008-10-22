@@ -10,3 +10,6 @@ from osha.whoswho import whoswhoMessageFactory as _
 
 class Iwhoswho(Interface):
     """Description of the Example Type"""
+
+class IWhosWhoView(Interface):
+    """A View for WhosWho"""

@@ -21,7 +21,7 @@
 
     <browser:page
         for="*"
-        name="whoswho_keyword"
+        name="whoswho_type"
         class=".index_keyword.IndexKeyword"
         permission="zope2.View"
     />

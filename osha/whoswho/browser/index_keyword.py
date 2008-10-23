@@ -51,7 +51,7 @@ class IndexKeyword(BrowserView):
 
 #        import pdb; pdb.set_trace()
         portal_catalog = getToolByName(self, 'portal_catalog')
-        res = portal_catalog(portal_type="whoswho", Language=[self.lang,''], getWhoswho_type=searchterm)
+        res = portal_catalog(portal_type="whoswho", Language=[self.lang,''], getWhosWhoType=searchterm)
         return res
 
 

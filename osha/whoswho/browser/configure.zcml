@@ -26,6 +26,15 @@
         permission="zope2.View"
     />
 
+    <!--browser:viewlet
+        name="plone.contentactions"
+        for="*"
+        view="osha.whoswho.interfaces.IWhosWhoView"
+        manager="plone.app.layout.viewlets.interfaces.IContentViews"
+        class="plone.app.layout.viewlets.common.ContentActionsViewlet"
+        permission="zope2.View"
+        /-->
+
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>

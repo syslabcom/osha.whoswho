@@ -37,6 +37,7 @@ class IndexKeyword(BrowserView):
             keywords.append(dict(id=term_id, title=caption))
             keywordsById[term_id] = caption
 
+#        import pdb; pdb.set_trace()
         self.keywordsById = keywordsById
         keywords.sort(lambda a,b: cmp(a['title'], b['title']))
         return keywords

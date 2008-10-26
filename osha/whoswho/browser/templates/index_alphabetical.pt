@@ -27,12 +27,16 @@
         
         <h1 class="documentFirstHeading" i18n:translate="alphabetical_index">Alphabetical Index of the Multilingual Thesaurus</h1>
 
-        <div style="text-align:center">
-            <span tal:repeat="alpha alphabet">
+        <div style="text-align:center" id="slc-whoswho-alphabetical-terms">
+            <span tal:repeat="alpha alphabet"
+                tal:omit-tag="">
                 
                 <a href="" rel="nofollow"
-                   tal:attributes="href string:${request/URL}?letter=${alpha}">                
-                    <strong style="font-size: larger" tal:content="alpha" />
+                    class="index-term"
+                   tal:attributes="href string:${request/URL}?letter=${alpha};
+                    letter alpha"
+                    tal:content="alpha">
+                    <!--strong style="font-size: larger" tal:content="alpha" /-->
                 </a>
                 
                 <span tal:omit-tag="" tal:condition="not:repeat/alpha/end">|</span> 
@@ -43,7 +47,7 @@
 
 
 
-        <div tal:condition="view/getLetter" 
+        <div id="slc-index-results"
              tal:define="lenresults python:len(resultsList);
                          modulo python: lenresults % 3;
                          itemspercol python:modulo == 0 and lenresults/3 or lenresults/3+1;
@@ -51,10 +55,10 @@
                          colB python:resultsList[itemspercol:2*itemspercol];
                          colC python:resultsList[2*itemspercol:]">
             <h2>
-                <span tal:content="view/getLetter">Letter</span>
+                <span tal:condition="view/getLetter" tal:content="view/getLetter">Letter</span>
             </h2>
             <div id="resultcolA" class="resultcol">
-                <ul class="keylist" >
+                <dl class="keylist" tal:condition="view/getLetter">
                     <tal:repeat tal:repeat="key resultsList">
                     <dt tal:define="key_caption python: key[0]; key_term_id python:key[1]"
                         tal:attributes="class python: key_term_id==term_id and 'current_term' or ''"> 
@@ -64,7 +68,7 @@
                     </dt>
                     <dd tal:content="python:key[3]"></dd>
                     </tal:repeat>
-                </ul>
+                </dl>
             </div>
         
         </div>

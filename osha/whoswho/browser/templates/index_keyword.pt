@@ -27,12 +27,15 @@
 
         <h1 class="documentFirstHeading" i18n:translate="whoswho_type">Who's Who by Type</h1>
 
-        <div style="text-align:center">
-            <span tal:repeat="kw keywords">
+        <div style="text-align:center" id="slc-whoswho-type-terms">
+            <span tal:repeat="kw keywords"
+                tal:omit-tag="">
 
                 <a href="" rel="nofollow"
-                   tal:attributes="href string:${request/URL}?searchterm=${kw/id}">
-                    <strong style="font-size: larger" tal:content="kw/title" />
+                   tal:attributes="href string:${request/URL}?searchterm=${kw/id};
+                   term kw/id; caption kw/title;"
+                   class="index-term"
+                   tal:content="kw/title" >
                 </a>
 
                 <span tal:omit-tag="" tal:condition="not:repeat/kw/end">|</span> 
@@ -43,18 +46,17 @@
 
 
 
-        <div tal:condition="searchterm" 
-             tal:define="lenresults python:len(resultsList);
+        <div id="slc-index-results" tal:define="lenresults python:len(resultsList);
                          modulo python: lenresults % 3;
                          itemspercol python:modulo == 0 and lenresults/3 or lenresults/3+1;
                          colA python:resultsList[:itemspercol];
                          colB python:resultsList[itemspercol:2*itemspercol];
                          colC python:resultsList[2*itemspercol:]">
             <h2>
-                <span tal:content="view/getTermById">Letter</span>
+                <span tal:condition="searchterm" tal:content="view/getTermById">Letter</span>
             </h2>
             <div id="resultcolA" class="resultcol">
-                <ul class="keylist" >
+                <ul class="keylist" tal:condition="searchterm">
                     <tal:repeat tal:repeat="res resultsList">
                     <dt>
                         <a href="" rel="nofollow"

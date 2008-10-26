@@ -26,6 +26,30 @@
         permission="zope2.View"
     />
 
+    <browser:page
+        for="*"
+        name="kssListByLetterLoad"
+        class=".kssListByTermLoad.kssListByLetterLoad"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="kssListByTypeLoad"
+        class=".kssListByTermLoad.kssListByTypeLoad"
+        permission="zope2.View"
+    />
+
+    <browser:resource
+        name="whoswho.kss"
+        file="whoswho.kss"
+        />
+
+    <browser:resource
+        name="whoswho.css"
+        file="whoswho.css"
+        />
+
     <!--browser:viewlet
         name="plone.contentactions"
         for="*"

@@ -1,0 +1,15 @@
+#slc-whoswho-alphabetical-terms a:click {
+    evt-click-preventdefault: True;
+
+
+    action-server: kssListByLetterLoad;
+    kssListByLetterLoad-letter: nodeAttr('letter');
+}
+
+#slc-whoswho-type-terms a:click {
+    evt-click-preventdefault: True;
+
+    action-server: kssListByTypeLoad;
+    kssListByTypeLoad-term: nodeAttr('term');
+    kssListByTypeLoad-caption: nodeAttr('caption');
+}

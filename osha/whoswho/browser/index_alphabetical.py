@@ -36,13 +36,13 @@ class IndexAlphabetical(BrowserView):
             self.lang = portal_languages.getPreferredLanguage()
         return self.lang
 
-    def _createInitials_cachekey(method, self):
-        preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
-        portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
-        navigation_root_path = portal_state.navigation_root_path()
-        return ("whoswhoalphabeticalinitials", self.getLang(), navigation_root_path, time.time()//60 * 60)
-
-    @ram.cache(_createInitials_cachekey)
+#    def _createInitials_cachekey(method, self):
+#        preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
+#        portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+#        navigation_root_path = portal_state.navigation_root_path()
+#        return ("whoswhoalphabeticalinitials", self.getLang(), navigation_root_path, time.time()//60 * 60)
+#
+#    @ram.cache(_createInitials_cachekey)
     def createInitials(self):
         """ fetch the whole alphabet """
         portal_catalog = getToolByName(self.context, 'portal_catalog')

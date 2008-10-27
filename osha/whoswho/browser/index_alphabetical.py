@@ -25,7 +25,7 @@ class IndexAlphabetical(BrowserView):
             except:
                 print "index_alphabetical:: could not convert to unicode"
         self.term_id = self.request.get('term_id', '')
-        self.createInitials()
+        self.initials = self.createInitials()
 
         return self.template() 
 
@@ -71,15 +71,19 @@ class IndexAlphabetical(BrowserView):
                 continue
             initial = caption[0].upper()
             section = initials.get(initial, [])
-            section.append((caption, term_id, ww.getURL(), ww.Description))
+            section.append((unicode(caption, 'utf-8'), 
+                        unicode(term_id, 'utf-8'), 
+                        unicode(ww.getURL(), 'utf-8'), 
+                        unicode(ww.Description, 'utf-8')))
             initials[initial] = section
         self.initials = initials
+        return initials
 
 
     def getAlphabet(self):
         """ fetch the whole alphabet """
         if not getattr(self, 'initials', None):
-            self.createInitials()
+            self.initials = self.createInitials()
         alphabet = self.initials.keys()
         alphabet.sort()
         self.alphabet = alphabet
@@ -94,7 +98,7 @@ class IndexAlphabetical(BrowserView):
             return [[], {}]
 
         if not getattr(self, 'initials', None):
-            self.createInitials()
+            self.initials = self.createInitials()
         section = self.initials.get(letter, [])    
         section.sort()
         return section

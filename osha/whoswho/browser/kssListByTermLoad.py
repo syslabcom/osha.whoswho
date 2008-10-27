@@ -54,7 +54,9 @@ class kssListByTypeLoad(BrowserView):
                     <dt><a href="%(url)s" rel="nofollow">%(title)s</a>
                     </dt>
                     <dd>%(description)s</dd>
-                    """ % dict(url=r.getURL(), title=r.Title, description=r.Description)
+                    """ % dict(url=r.getURL(), 
+                            title=unicode(r.Title, 'utf-8'), 
+                            description=unicode(r.Description, 'utf-8'))
         restag += u"""</dl>"""
 
         core = getKSSCommandSet('core')

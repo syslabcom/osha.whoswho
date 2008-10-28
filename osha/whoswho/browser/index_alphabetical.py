@@ -110,4 +110,12 @@ class IndexAlphabetical(BrowserView):
     def getTerm_id(self):
         return self.term_id
 
+    def getHeading(self):
+        context = Acquisition.aq_base(Acquisition.aq_inner(self.context))
+        return context.Title()
 
+    def getBodyText(self):
+        """ returns body text of collection  if present """
+        context = Acquisition.aq_base(Acquisition.aq_inner(self.context))
+        text = getattr(context, 'getText', None) and context.getText() or ''
+        return text

@@ -105,3 +105,13 @@ class IndexKeyword(BrowserView):
         if not term_id:
             term_id = self.getSearchterm()
         return self.initials.has_key(term_id) and self.initials[term_id]['caption'] or ''
+
+    def getHeading(self):
+        context = Acquisition.aq_base(Acquisition.aq_inner(self.context))
+        return context.Title()
+
+    def getBodyText(self):
+        """ returns body text of collection  if present """
+        context = Acquisition.aq_base(Acquisition.aq_inner(self.context))
+        text = getattr(context, 'getText', None) and context.getText() or ''
+        return text

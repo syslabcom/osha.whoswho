@@ -25,7 +25,9 @@
     
     <div id="alphabetical-index">
 
-        <h1 class="documentFirstHeading" i18n:translate="whoswho_type">Who's Who by Type</h1>
+        <h1 class="documentFirstHeading" tal:content="view/getHeading">Who's Who: index by type</h1>
+        
+        <div tal:content="structure view/getBodyText" ></div>
 
         <div style="text-align:center" id="slc-whoswho-type-terms">
             <span tal:repeat="kw keywords"

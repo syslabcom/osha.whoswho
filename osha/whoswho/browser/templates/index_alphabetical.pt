@@ -25,7 +25,9 @@
     
     <div id="alphabetical-index">
         
-        <h1 class="documentFirstHeading" i18n:translate="alphabetical_index">Alphabetical Index of the Multilingual Thesaurus</h1>
+        <h1 class="documentFirstHeading" tal:content="view/getHeading">Who's Who: alphabetical index</h1>
+        
+        <div tal:content="structure view/getBodyText" ></div>
 
         <div style="text-align:center" id="slc-whoswho-alphabetical-terms">
             <span tal:repeat="alpha alphabet"

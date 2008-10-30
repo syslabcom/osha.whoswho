@@ -136,15 +136,15 @@ schema = Schema((
         schemata="default",
         searchable=True,
     ),
-    LinesField(
-        name='WhosWhoType',
-        languageIndependent=True,
-        widget=MultiSelectionWidget(
-            label=_(u"label_whoswho_type", default=u"Who's Who type"),
-            format="checkbox",
-         ),
-         vocabulary='getWhoswho_type_vocabulary',
-    ),
+#    LinesField(
+#        name='WhosWhoType',
+#        languageIndependent=True,
+#        widget=MultiSelectionWidget(
+#            label=_(u"label_whoswho_type", default=u"Who's Who type"),
+#            format="checkbox",
+#         ),
+#         vocabulary='getWhoswho_type_vocabulary',
+#    ),
     ))
 
 whoswhoSchema = getattr(ATDocument, 'schema', Schema(())).copy() + \

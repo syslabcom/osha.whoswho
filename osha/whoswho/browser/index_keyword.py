@@ -45,13 +45,16 @@ class IndexKeyword(BrowserView):
 
         initials = {}
         pv = getToolByName(self, 'portal_vocabularies')
-        VOCAB = getattr(pv, 'WhosWhoType', None)
-        for term_id, caption in VOCAB.getVocabularyDict().items():
+        VOCAB = getattr(pv, 'OSHAMetadata', None) 
+        vocabDict = VOCAB.getVocabularyDict(VOCAB)
+        whoswhotype = vocabDict.get('WhosWhoType', {})
+        for term_id in whoswhotype[1].keys():
+            caption = whoswhotype[1][term_id][0]
             if len(caption)==0:
                 continue
             res = portal_catalog(portal_type="whoswho"
                     , Language=[self.getLang(),'']
-                    , getWhosWhoType=term_id
+                    , osha_metadata=term_id
                     , path=paths
                     )
             if len(res):
@@ -90,7 +93,7 @@ class IndexKeyword(BrowserView):
 
         res = portal_catalog(portal_type="whoswho"
                 , Language=[self.getLang(),'']
-                , getWhosWhoType=searchterm
+                , osha_metadata=searchterm
                 , path=paths
                 )
         return res

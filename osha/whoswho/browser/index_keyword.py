@@ -50,7 +50,7 @@ class IndexKeyword(BrowserView):
 
         # By default, look for WhosWhoType as branch of the vocabulary
         # But if the property by_type_vocabulary is set on the context, use that value
-        by_type_vocabulary = Acquisition.aq_base(Acquisition.aq_inner(self.context)).get('by_type_vocabulary', 'WhosWhoType')
+        by_type_vocabulary = Acquisition.aq_base(Acquisition.aq_inner(self.context)).getProperty('by_type_vocabulary', 'WhosWhoType')
         whoswhotype = vocabDict.get(by_type_vocabulary, {})
         for term_id in whoswhotype[1].keys():
             caption = whoswhotype[1][term_id][0]

@@ -8,7 +8,7 @@
   #db_results dd { background-color: transparent; margin-left: 0; padding-left: 2em !important; border-bottom: 1px dotted gray; padding: 2px; } 
   .keylist {  list-style-type: none !important; list-style-image: none !important;}
   .keylist li { padding: 1px; margin:0; }
-  .current_term { background-color: #ccc; }
+
   </style>
 
 </metal:cssslot>
@@ -32,15 +32,19 @@
 
                 <a href="" rel="nofollow"
                    tal:attributes="href string:${request/URL}?searchterm=${kw/id};
-                   term kw/id; caption kw/title;"
-                   class="index-term"
+                   term kw/id; caption kw/title;
+					id python:kw['id']==searchterm and 'selected-term' or '%s-term'%kw['id'].split('::')[-1];
+					class python: kw['id']==searchterm and 'current-term' or 'index-term'"
+                   class="index-term" 
                    tal:content="kw/title" >
                 </a>
 
                 <span tal:omit-tag="" tal:condition="not:repeat/kw/end">|</span> 
 
             </span>
-
+            <form id="invisibleForm">
+	            <input type="hidden" id="oldterm" name="oldterm" value="" tal:attributes="value searchterm" />
+	        </form>
         </div>
 
 

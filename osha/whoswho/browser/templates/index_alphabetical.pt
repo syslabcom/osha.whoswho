@@ -8,7 +8,6 @@
   #db_results dd { background-color: transparent; margin-left: 0; padding-left: 2em !important; border-bottom: 1px dotted gray; padding: 2px; } 
   .keylist {  list-style-type: none !important; list-style-image: none !important;}
   .keylist li { padding: 1px; margin:0; }
-  .current_term { background-color: #ccc; }
   </style>
 
 </metal:cssslot>
@@ -33,7 +32,9 @@
                 <a href="" rel="nofollow"
                     class="index-term"
                    tal:attributes="href string:${request/URL}?letter=${alpha};
-                    letter alpha"
+                    letter alpha;
+					id python:alpha==letter and 'selected-term' or '%s-term'%alpha;
+					class python: alpha==letter and 'current-term' or 'index-term'"
                     tal:content="alpha">
                     <!--strong style="font-size: larger" tal:content="alpha" /-->
                 </a>
@@ -41,7 +42,9 @@
                 <span tal:omit-tag="" tal:condition="not:repeat/alpha/end">|</span> 
             
             </span>
-            
+            <form id="invisibleForm">
+	            <input type="hidden" id="oldletter" name="oldletter" value="" tal:attributes="value letter" />
+	        </form>            
         </div>    
 
 
@@ -59,8 +62,7 @@
             <div id="resultcolA" class="resultcol">
                 <dl class="keylist" tal:condition="view/getLetter">
                     <tal:repeat tal:repeat="key resultsList">
-                    <dt tal:define="key_caption python: key[0]; key_term_id python:key[1]"
-                        tal:attributes="class python: key_term_id==term_id and 'current_term' or ''"> 
+                    <dt tal:define="key_caption python: key[0]; key_term_id python:key[1]">
                         <a href="" rel="nofollow"
                            tal:content="key_caption"
                            tal:attributes="href python:key[2]"/>

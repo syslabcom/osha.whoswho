@@ -12,6 +12,7 @@ class kssListByLetterLoad(BrowserView):
 
     def __call__(self):
         letter = self.request.get('letter', None)
+        oldletter = self.request.get('oldletter', None)
         startKSSCommands(self, self.request)
 #        logger.info(letter)
         whoswho_alphabetical = getMultiAdapter((self.context, self.request), name=u'whoswho_alphabetical') 
@@ -29,6 +30,17 @@ class kssListByLetterLoad(BrowserView):
         core.replaceInnerHTML('#slc-index-results h2', letter)
         core.replaceInnerHTML('#slc-index-results #resultcolA', restag)
 
+        core.removeClass('#selected-term', 'current-term')
+        core.addClass('#selected-term', 'index-term')
+
+        core.removeClass('#%s-term'%letter, 'index-term')
+        core.addClass('#%s-term'%letter, 'current-term')
+
+        core.setAttribute('#selected-term', 'id', '%s-term'%oldletter)
+        core.setAttribute('#%s-term'%letter, 'id', 'selected-term')
+        core.setAttribute('#oldletter', 'value', letter)
+
+
         return renderKSSCommands() 
 
 
@@ -39,6 +51,7 @@ class kssListByTypeLoad(BrowserView):
     def __call__(self):
         term = self.request.get('term', '')
         caption = self.request.get('caption', '')
+        oldterm = self.request.get('oldterm', '')
         try:
             caption = unicode(caption, 'utf-8')
         except Exception, err:
@@ -59,8 +72,20 @@ class kssListByTypeLoad(BrowserView):
                             description=unicode(r.Description, 'utf-8'))
         restag += u"""</dl>"""
 
+        term_leaf = term.split('::')[-1]
+        oldterm_leaf = oldterm.split('::')[-1]
         core = getKSSCommandSet('core')
         core.replaceInnerHTML('#slc-index-results h2', caption)
         core.replaceInnerHTML('#slc-index-results #resultcolA', restag)
+        core.removeClass('#selected-term', 'current-term')
+        core.addClass('#selected-term', 'index-term')
+
+        core.removeClass('#%s-term'%term_leaf, 'index-term')
+        core.addClass('#%s-term'%term_leaf, 'current-term')
+
+        core.setAttribute('#selected-term', 'id', '%s-term'%oldterm_leaf)
+        core.setAttribute('#%s-term'%term_leaf, 'id', 'selected-term')
+        core.setAttribute('#oldterm', 'value', term)
+
 
         return renderKSSCommands()

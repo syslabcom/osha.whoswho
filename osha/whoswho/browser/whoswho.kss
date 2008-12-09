@@ -4,6 +4,7 @@
 
     action-server: kssListByLetterLoad;
     kssListByLetterLoad-letter: nodeAttr('letter');
+    kssListByLetterLoad-oldletter: formVar('invisibleForm', 'oldletter');
 }
 
 #slc-whoswho-type-terms a:click {
@@ -12,4 +13,5 @@
     action-server: kssListByTypeLoad;
     kssListByTypeLoad-term: nodeAttr('term');
     kssListByTypeLoad-caption: nodeAttr('caption');
+    kssListByTypeLoad-oldterm: formVar('invisibleForm', 'oldterm');
 }

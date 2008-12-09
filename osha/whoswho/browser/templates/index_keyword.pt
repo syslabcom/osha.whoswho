@@ -9,9 +9,6 @@
   .keylist {  list-style-type: none !important; list-style-image: none !important;}
   .keylist li { padding: 1px; margin:0; }
   .current_term { background-color: #ccc; }
-  .resultcol {float:left; width:48%; padding-right:1%;}
-  .detailcol {float:left; width:48%; border: 1px dashed gray; padding:0 1%; background-color: #eee;}
-  .detailcol h3 { border-bottom: 1px solid gray;  margin-bottom:1.5em;}
   </style>
 
 </metal:cssslot>

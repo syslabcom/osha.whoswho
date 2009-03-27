@@ -66,7 +66,7 @@ class kssListByTypeLoad(BrowserView):
             restag += u"""
                     <dt><a href="%(url)s" rel="nofollow">%(title)s</a>
                     </dt>
-                    <dd>%(description)s</dd>
+                    <p>%(description)s</p>
                     """ % dict(url=r.getURL(), 
                             title=unicode(r.Title, 'utf-8'), 
                             description=unicode(r.Description, 'utf-8'))

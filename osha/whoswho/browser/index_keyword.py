@@ -99,6 +99,7 @@ class IndexKeyword(BrowserView):
                 , Language=[self.getLang(),'']
                 , osha_metadata=searchterm
                 , path=paths
+                , sort_on='sortable_title'
                 )
         return res
 

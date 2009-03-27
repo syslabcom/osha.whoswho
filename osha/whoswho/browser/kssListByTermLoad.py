@@ -22,7 +22,7 @@ class kssListByLetterLoad(BrowserView):
             restag += u"""
                     <dt><a href="%(url)s" rel="nofollow">%(title)s</a>
                     </dt>
-                    <dd>%(description)s</dd>
+                    <p>%(description)s</p>
                     """ % dict(url=r[2], title=r[0], description=r[3])
         restag += u"""</dl>"""
 

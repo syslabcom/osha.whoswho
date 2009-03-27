@@ -36,7 +36,7 @@
 					id python:kw['id']==searchterm and 'selected-term' or '%s-term'%kw['id'].split('::')[-1];
 					class python: kw['id']==searchterm and 'current-term' or 'index-term'"
                    class="index-term" 
-                   tal:content="kw/title" >
+                   tal:content="structure python:kw['title'].replace(' ', '&nbsp;')" >
                 </a>
 
                 <span tal:omit-tag="" tal:condition="not:repeat/kw/end">|</span> 
@@ -66,7 +66,7 @@
                            tal:content="res/Title"
                            tal:attributes="href res/getURL"/>
                     </dt>
-                    <dd tal:content="res/Description"></dd>
+                    <p tal:content="res/Description"></p>
                     </tal:repeat>
                 </ul>
             </div>

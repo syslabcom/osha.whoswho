@@ -67,7 +67,7 @@
                            tal:content="key_caption"
                            tal:attributes="href python:key[2]"/>
                     </dt>
-                    <dd tal:content="python:key[3]"></dd>
+                    <p tal:content="python:key[3]"></p>
                     </tal:repeat>
                 </dl>
             </div>

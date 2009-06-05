@@ -30,7 +30,7 @@ long_description = (
     + '\n' 
     )
     
-tests_require=['zope.testing']1'
+tests_require=['zope.testing']'
 
 setup(name='osha.whoswho',
       version=version,

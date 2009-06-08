@@ -1,3 +1,5 @@
+CHANGES.txt
+CONTRIBUTORS.txt
 README.txt
 setup.cfg
 setup.py
@@ -16,6 +18,7 @@ osha.whoswho.egg-info/paster_plugins.txt
 osha.whoswho.egg-info/requires.txt
 osha.whoswho.egg-info/top_level.txt
 osha/whoswho/.svnignore
+osha/whoswho/README.txt
 osha/whoswho/__init__.py
 osha/whoswho/config.py
 osha/whoswho/configure.zcml

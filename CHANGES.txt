@@ -1,6 +1,11 @@
 osha.whoswho Changelog
 ======================
 
+osha.whoswho 1.2.1 (2009-06-17)
+-------------------------------
+
+- added basic doctest (thomasw)
+
 osha.whoswho 1.2 (2009-06-10)
 -----------------------------
 

@@ -21,7 +21,7 @@ long_description = (
     'Detailed Documentation\n'
     '**********************\n'
     + '\n' +
-    read('osha', 'whoswho', 'README.txt')
+    read('src', 'osha', 'whoswho', 'README.txt')
     + '\n' +
     'Contributors\n'
     '************\n'
@@ -30,7 +30,11 @@ long_description = (
     + '\n' 
     )
     
-tests_require=['zope.testing']
+tests_require=[
+    'Products.PloneTestCase',
+    'zope.testing',
+    'PIL',
+    ]
 
 setup(name='osha.whoswho',
       version=version,
@@ -47,14 +51,29 @@ setup(name='osha.whoswho',
       author_email='info@syslab.com',
       url='https://svn.syslab.com/svn/OSHA/osha.whoswho/',
       license='GPL',
-      packages=find_packages(exclude=['ez_setup']),
+      packages=['osha', 'osha.whoswho'], 
+      package_dir={'':'src'},
       namespace_packages=['osha'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-      ],
+        'kss.core',
+        'plone.app.layout',
+        'plone.memoize',
+        'Products.Archetypes',
+        'Products.ATContentTypes',
+        'Products.CMFCore',
+        'zope.app.container',
+        'zope.component',
+        'zope.i18nmessageid',
+        'zope.schema',
+        'zope.interface',
+        'Acquisition',  
+        'Products.ATVocabularyManager',
+        'Products.VocabularyPickerWidget',
+        ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
       test_suite = 'osha.whoswho.tests.test_docs.test_suite',

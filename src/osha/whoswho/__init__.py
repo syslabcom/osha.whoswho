@@ -14,6 +14,9 @@ from Products.CMFCore.permissions import setDefaultRoles
 
 whoswhoMessageFactory = MessageFactory('osha')
 
+setDefaultRoles("osha.whoswho: Add whoswho", ('Manager',))
+
+
 def initialize(context):
     """Initializer called when used as a Zope 2 product.
 

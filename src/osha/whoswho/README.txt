@@ -59,7 +59,8 @@ Basic Testing
 -------------
 
 We start out by adding a WhosWho object.
-
+    
+    >>> file('/tmp/bla.html', 'w').write(browser.contents)
 	>>> browser.getLink("Who's Who").click()
 	>>> browser.getControl('Title').value = 'My WhosWho'
 	>>> browser.getControl('Description').value = "Test WhosWho description"

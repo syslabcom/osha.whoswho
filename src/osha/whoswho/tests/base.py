@@ -14,10 +14,15 @@ class OSHAWhosWhoLayer(SiteLayer):
     def setUp(cls):
         """Set up additional products and ZCML required to test this product.
         """
-        ztc.installPackage('osha.whoswho')
         ztc.installProduct('VocabularyPickerWidget')
         ztc.installProduct('ATVocabularyManager')
-        ptc.setupPloneSite(products=['osha.whoswho', 'Products.VocabularyPickerWidget', 'Products.ATVocabularyManager'])
+        ptc.setupPloneSite(products=[
+            'osha.whoswho', 
+            'Products.VocabularyPickerWidget', 
+            'Products.ATVocabularyManager'
+            ], extension_profiles=[
+            "osha.whoswho:default",
+            ])
 
         # Load the ZCML configuration for this package and its dependencies
 

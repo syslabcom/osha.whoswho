@@ -1,6 +1,11 @@
 osha.whoswho Changelog
 ======================
 
+osha.whoswho 1.2.2 (unreleased)
+-------------------------------
+
+- Added EUPL license (deroiste)
+
 osha.whoswho 1.2.1 (2009-06-17)
 -------------------------------
 

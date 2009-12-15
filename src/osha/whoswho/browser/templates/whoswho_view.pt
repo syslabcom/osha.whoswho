@@ -62,7 +62,7 @@
      
     <div id="tel"
         tal:condition="python:len(tel)>0">
-        <h3 i18n:translate="label_telephone">Telephone</h3>
+        <h3 i18n:translate="label_tel">Telephone</h3>
         <div tal:replace="tel"/>
     </div>
     
@@ -91,7 +91,7 @@
     </div>    
     
     <div id="sponsor" tal:condition="python:len(sponsorUrl)>0 or len(sponsorName)>0">
-        <h3 i18n:translate="label_sponsor">Sponsor</h3>
+        <h3 i18n:translate="label_sponsorName">Sponsor</h3>
         <span tal:condition="python:len(sponsorUrl)>0">
             <a href="" tal:attributes="href sponsorUrl"><div tal:replace="structure python:
                 len(sponsorName)>0 and sponsorName.replace('\n', '<br>') or sponsorUrl"/></a>
@@ -103,7 +103,7 @@
     
     
     <div id="relatedOrg" tal:condition="python:len(relatedOrgUrl)>0 or len(relatedOrgName)>0">
-        <h3 i18n:translate="label_relatedOrg">Related organisation</h3>
+        <h3 i18n:translate="label_relatedOrgName">Related organisation</h3>
         <span tal:condition="python:len(relatedOrgUrl)>0">
             <a href="" tal:attributes="href relatedOrgUrl"><div 
                 tal:replace="structure python:len(relatedOrgName)>0 and relatedOrgName.replace('\n', '<br>') or

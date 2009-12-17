@@ -1,3 +1,6 @@
+Package Information
+*******************
+
 .. contents::
 
 .. Note!

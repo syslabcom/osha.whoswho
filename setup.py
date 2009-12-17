@@ -82,6 +82,5 @@ setup(name='osha.whoswho',
       entry_points="""
       # -*- entry_points -*- 
       """,
-      paster_plugins = ["ZopeSkel"],
       )      
       

@@ -1,8 +1,8 @@
 osha.whoswho Changelog
 ======================
 
-osha.whoswho 1.2.2 (unreleased)
--------------------------------
+1.2.2 (2009-12-17)
+------------------
 
 - Added EUPL license (deroiste)
 - Changed some i18n labels (thomasw)

@@ -16,6 +16,7 @@ class OSHAWhosWhoLayer(SiteLayer):
         """
         ztc.installProduct('VocabularyPickerWidget')
         ztc.installProduct('ATVocabularyManager')
+        ztc.installPackage('osha.whoswho')
         ptc.setupPloneSite(products=[
             'osha.whoswho', 
             'Products.VocabularyPickerWidget', 

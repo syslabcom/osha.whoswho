@@ -61,16 +61,16 @@ Basic Testing
 We start out by adding a WhosWho object.
     
     >>> file('/tmp/bla.html', 'w').write(browser.contents)
-	>>> browser.getLink("Who's Who").click()
-	>>> browser.getControl('Title').value = 'My WhosWho'
-	>>> browser.getControl('Description').value = "Test WhosWho description"
-	>>> browser.getControl('Save').click()
-	>>> "Changes saved" in browser.contents
-	True
+    >>> browser.getLink("Who's Who").click()
+    >>> browser.getControl('Title').value = 'My WhosWho'
+    >>> browser.getControl('Description').value = "Test WhosWho description"
+    >>> browser.getControl('Save').click()
+    >>> "Changes saved" in browser.contents
+    True
 
 Now we look at the alphabetical index:
 
-	>>> browser.open('/'.join(browser.url.split('/')[:-1] + ['whoswho_alphabetical']))
-	>>> browser.getLink(id='M-term').click()
-	>>> "Test WhosWho description" in browser.contents
-	True
+    >>> browser.open('/'.join(browser.url.split('/')[:-1] + ['whoswho_alphabetical']))
+    >>> browser.getLink(id='M-term').click()
+    >>> "Test WhosWho description" in browser.contents
+    True

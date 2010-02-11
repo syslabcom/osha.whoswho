@@ -1,7 +1,7 @@
 osha.whoswho Changelog
 ======================
 
-1.2.3 (unreleased)
+1.2.3 (2010-02-11)
 ------------------
 
 - Fixed setup and dependencies for independent testing (thomasw)

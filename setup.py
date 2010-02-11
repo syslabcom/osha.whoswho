@@ -34,6 +34,7 @@ tests_require=[
     'Products.PloneTestCase',
     'zope.testing',
     'PIL',
+    'osha.whoswho'
     ]
 
 setup(name='osha.whoswho',
@@ -53,14 +54,13 @@ setup(name='osha.whoswho',
       author_email='info@syslab.com',
       url='https://svn.syslab.com/svn/OSHA/osha.whoswho/',
       license='GPL + EUPL',
-      packages=['osha', 'osha.whoswho'], 
+      packages=['osha', 'osha/whoswho'], 
       package_dir={'':'src'},
       namespace_packages=['osha'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
         'kss.core',
         'plone.app.layout',
         'plone.memoize',
@@ -80,7 +80,8 @@ setup(name='osha.whoswho',
       extras_require=dict(tests=tests_require),
       test_suite = 'osha.whoswho.tests.test_docs.test_suite',
       entry_points="""
-      # -*- entry_points -*- 
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )      
       

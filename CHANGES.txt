@@ -4,8 +4,7 @@ osha.whoswho Changelog
 1.2.3 (unreleased)
 ------------------
 
-- Added missing install in the basic doctest (thomasw)
-
+- Fixed setup and dependencies for independent testing (thomasw)
 
 1.2.2 (2009-12-17)
 ------------------

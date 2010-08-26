@@ -33,7 +33,7 @@ long_description = (
 tests_require=[
     'Products.PloneTestCase',
     'zope.testing',
-    'PIL',
+    'Pillow',
     'osha.whoswho'
     ]
 

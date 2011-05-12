@@ -1,26 +1,18 @@
 """Definition of the whoswho content type
 """
-from Products.Archetypes.atapi import *
-
-try:
-    from Products.LinguaPlone.public import *
-except ImportError:
-    HAS_LINGUAPLONE = False
-else:
-    HAS_LINGUAPLONE = True
+from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
-from zope.interface import implements, directlyProvides
 
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 from Products.ATContentTypes.content.document import ATDocument
+from Products.Archetypes.atapi import *
+from Products.CMFCore.utils import getToolByName
 
 from osha.whoswho import whoswhoMessageFactory as _
 from osha.whoswho.interfaces import Iwhoswho
 from osha.whoswho.config import PROJECTNAME
-from Products.CMFCore.utils import getToolByName
-
 
 schema = Schema((
 

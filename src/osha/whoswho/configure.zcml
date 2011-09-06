@@ -12,7 +12,6 @@
     <include package=".portlets" />
 
 	<include package="Products.ATVocabularyManager" />
-	<include package="Products.VocabularyPickerWidget" />
 
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile

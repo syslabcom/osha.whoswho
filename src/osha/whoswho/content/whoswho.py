@@ -64,8 +64,8 @@ schema = Schema((
         ),
         required=False,
         schemata="default",
-        default_content_type = 'text/html',
-        default_output_type = 'text/html',
+        default_content_type='text/html',
+        default_output_type='text/html',
         searchable=True,
     ),
     TextField(
@@ -111,7 +111,8 @@ schema = Schema((
     StringField(
         name='relatedOrgUrl',
         widget=StringField._properties['widget'](
-            label=_(u'label_relatedOrgUrl', default=u'Related organisation URL'),
+            label=_(u'label_relatedOrgUrl',
+                    default=u'Related organisation URL'),
             description=u'',
         ),
         required=False,
@@ -121,7 +122,8 @@ schema = Schema((
     TextField(
         name='relatedOrgName',
         widget=TextAreaWidget(
-            label=_(u'label_relatedOrgName', default=u'Related organisation name'),
+            label=_(u'label_relatedOrgName',
+                    default=u'Related organisation name'),
             description=u'',
         ),
         required=False,
@@ -175,7 +177,7 @@ class whoswho(base.ATCTContent):
         VOCAB = getattr(pv, vocab_name, None)
         if VOCAB:
             for k, v in VOCAB.getVocabularyDict().items():
-                dl.add(k,v)
+                dl.add(k, v)
         return dl
 
 registerType(whoswho, PROJECTNAME)

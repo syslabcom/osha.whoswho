@@ -1,49 +1,39 @@
-from Products.Five import zcml
-from Products.Five import fiveconfigure
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
+from plone.app.testing import quickInstallProduct
+from plone.testing import z2
 
-from Testing import ZopeTestCase as ztc
 
-from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import onsetup
-from Products.PloneTestCase import layer
+class OshaWhosWho(PloneSandboxLayer):
 
-SiteLayer = layer.PloneSite
+    defaultBases = (PLONE_FIXTURE,)
 
-class OSHAWhosWhoLayer(SiteLayer):
-    @classmethod
-    def setUp(cls):
-        """Set up additional products and ZCML required to test this product.
-        """
-        ztc.installProduct('VocabularyPickerWidget')
-        ztc.installProduct('ATVocabularyManager')
-        ztc.installPackage('osha.whoswho')
-        ptc.setupPloneSite(products=[
-            'osha.whoswho', 
-            'Products.VocabularyPickerWidget', 
-            'Products.ATVocabularyManager'
-            ], extension_profiles=[
-            "osha.whoswho:default",
-            ])
-
-        # Load the ZCML configuration for this package and its dependencies
-
-        fiveconfigure.debug_mode = True
+    def setUpZope(self, app, configurationContext):
         import osha.whoswho
-        zcml.load_config('configure.zcml', osha.whoswho)
-        fiveconfigure.debug_mode = False
+        self.loadZCML('configure.zcml', package=osha.whoswho)
 
-        
-        SiteLayer.setUp()
+        z2.installProduct(app, 'Products.VocabularyPickerWidget')
+        z2.installProduct(app, 'Products.ATVocabularyManager')
+        z2.installProduct(app, 'osha.whoswho')
 
-# The order here is important: We first call the deferred function and then 
-# let PloneTestCase install it during Plone site setup
+    def setUpPloneSite(self, portal):
+        quickInstallProduct(portal, 'Products.VocabularyPickerWidget')
+        quickInstallProduct(portal, 'Products.ATVocabularyManager')
+        applyProfile(portal, 'osha.whoswho:default')
 
-class TestCase(ptc.PloneTestCase):
-    """Base class used for test cases
-    """
-    layer = OSHAWhosWhoLayer
+    def tearDownZope(self, app):
+        z2.uninstallProduct(app, 'Products.VocabularyPickerWidget')
+        z2.uninstallProduct(app, 'Products.ATVocabularyManager')
+        z2.uninstallProduct(app, 'osha.whoswho')
 
-class FunctionalTestCase(ptc.FunctionalTestCase):
-    """Test case class used for functional (doc-)tests
-    """
-    layer = OSHAWhosWhoLayer
+
+OSHA_WHOSWHO_FIXTURE = OshaWhosWho()
+INTEGRATION_TESTING = IntegrationTesting(
+    bases=(OSHA_WHOSWHO_FIXTURE,),
+    name="OshaWhosWho:Integration")
+FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(OSHA_WHOSWHO_FIXTURE,),
+    name="OshaWhosWho:Functional")

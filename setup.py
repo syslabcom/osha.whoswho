@@ -27,15 +27,8 @@ long_description = (
     '************\n'
     + '\n' +
     read('CONTRIBUTORS.txt')
-    + '\n' 
+    + '\n'
     )
-    
-tests_require=[
-    'Products.PloneTestCase',
-    'zope.testing',
-    'Pillow',
-    'osha.whoswho'
-    ]
 
 setup(name='osha.whoswho',
       version=version,
@@ -54,24 +47,26 @@ setup(name='osha.whoswho',
       author_email='info@syslab.com',
       url='https://svn.syslab.com/svn/OSHA/osha.whoswho/',
       license='GPL + EUPL',
-      packages=['osha', 'osha/whoswho'], 
-      package_dir={'':'src'},
+      packages=['osha', 'osha/whoswho'],
+      package_dir={'': 'src'},
       namespace_packages=['osha'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'setuptools',
-        'plone.app.layout',
-        'plone.memoize',
-        'zope.app.container',
-        'Products.ATVocabularyManager',
-        ],
-      tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
-      test_suite = 'osha.whoswho.tests.test_docs.test_suite',
+          'plone.app.layout',
+          'plone.memoize',
+          'zope.app.container',
+          'Products.ATVocabularyManager',
+      ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+              'mock',
+          ],
+      },
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      )      
-      
+      )

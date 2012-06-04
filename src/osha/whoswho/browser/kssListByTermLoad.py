@@ -1,10 +1,13 @@
-import Acquisition
 from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
-from kss.core.ttwapi import ( startKSSCommands, getKSSCommandSet, renderKSSCommands )
-import logging
-logger = logging.getLogger('osha.whoswho')
+from kss.core.ttwapi import startKSSCommands
+from kss.core.ttwapi import getKSSCommandSet
+from kss.core.ttwapi import renderKSSCommands
 from zope.component import getMultiAdapter
+
+import logging
+
+logger = logging.getLogger('osha.whoswho')
+
 
 class kssListByLetterLoad(BrowserView):
     """called by kss, loads whoswhos by letter
@@ -14,8 +17,9 @@ class kssListByLetterLoad(BrowserView):
         letter = self.request.get('letter', None)
         oldletter = self.request.get('oldletter', None)
         startKSSCommands(self, self.request)
-#        logger.info(letter)
-        whoswho_alphabetical = getMultiAdapter((self.context, self.request), name=u'whoswho_alphabetical') 
+        # logger.info(letter)
+        whoswho_alphabetical = getMultiAdapter((self.context, self.request),
+                                               name=u'whoswho_alphabetical')
         res = whoswho_alphabetical.resultsByLetter(letter)
         restag = u"""<dl class="keylist" >"""
         for r in res:
@@ -33,15 +37,14 @@ class kssListByLetterLoad(BrowserView):
         core.removeClass('#selected-term', 'current-term')
         core.addClass('#selected-term', 'index-term')
 
-        core.removeClass('#%s-term'%letter, 'index-term')
-        core.addClass('#%s-term'%letter, 'current-term')
+        core.removeClass('#%s-term' % letter, 'index-term')
+        core.addClass('#%s-term' % letter, 'current-term')
 
-        core.setAttribute('#selected-term', 'id', '%s-term'%oldletter)
-        core.setAttribute('#%s-term'%letter, 'id', 'selected-term')
+        core.setAttribute('#selected-term', 'id', '%s-term' % oldletter)
+        core.setAttribute('#%s-term' % letter, 'id', 'selected-term')
         core.setAttribute('#oldletter', 'value', letter)
 
-
-        return renderKSSCommands() 
+        return renderKSSCommands()
 
 
 class kssListByTypeLoad(BrowserView):
@@ -55,10 +58,11 @@ class kssListByTypeLoad(BrowserView):
         try:
             caption = unicode(caption, 'utf-8')
         except Exception, err:
-            print "could not make unicode out of caption: %s" %err
+            print "could not make unicode out of caption: %s" % err
         startKSSCommands(self, self.request)
-#        logger.info(term)
-        whoswho_type = getMultiAdapter((self.context, self.request), name=u'whoswho_type') 
+        # logger.info(term)
+        whoswho_type = getMultiAdapter((self.context, self.request),
+                                       name=u'whoswho_type')
         res = whoswho_type.resultsBySearchterm(term)
 
         restag = u"""<dl class="keylist" >"""
@@ -67,8 +71,8 @@ class kssListByTypeLoad(BrowserView):
                     <dt><a href="%(url)s" rel="nofollow">%(title)s</a>
                     </dt>
                     <p>%(description)s</p>
-                    """ % dict(url=r.getURL(), 
-                            title=unicode(r.Title, 'utf-8'), 
+                    """ % dict(url=r.getURL(),
+                            title=unicode(r.Title, 'utf-8'),
                             description=unicode(r.Description, 'utf-8'))
         restag += u"""</dl>"""
 
@@ -80,12 +84,11 @@ class kssListByTypeLoad(BrowserView):
         core.removeClass('#selected-term', 'current-term')
         core.addClass('#selected-term', 'index-term')
 
-        core.removeClass('#%s-term'%term_leaf, 'index-term')
-        core.addClass('#%s-term'%term_leaf, 'current-term')
+        core.removeClass('#%s-term' % term_leaf, 'index-term')
+        core.addClass('#%s-term' % term_leaf, 'current-term')
 
-        core.setAttribute('#selected-term', 'id', '%s-term'%oldterm_leaf)
-        core.setAttribute('#%s-term'%term_leaf, 'id', 'selected-term')
+        core.setAttribute('#selected-term', 'id', '%s-term' % oldterm_leaf)
+        core.setAttribute('#%s-term' % term_leaf, 'id', 'selected-term')
         core.setAttribute('#oldterm', 'value', term)
-
 
         return renderKSSCommands()

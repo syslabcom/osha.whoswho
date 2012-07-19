@@ -71,7 +71,8 @@ class IndexKeyword(BrowserView):
     def getKeywords(self):
         """ fetch all keywords"""
         self.initials = self.getInitials()
-        keywords = [dict(id=k, title=self.initials[k]['caption'])
+        keywords = [dict(id=k, title=self.initials[k]['caption'],
+	            display_title=self.initials[k]['caption'].replace(' ', '&nbsp;'))
                     for k in self.initials.keys()]
         keywords.sort(lambda a, b: cmp(a['title'], b['title']))
         return keywords

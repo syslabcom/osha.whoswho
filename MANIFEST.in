@@ -13,3 +13,6 @@ recursive-include src *.py
 recursive-include src *.txt
 recursive-include src *.xml
 recursive-include src *.zcml
+
+# added by check_manifest.py
+include *.rst

@@ -1,7 +1,7 @@
 osha.whoswho Changelog
 ======================
 
-1.3.1 (unreleased)
+1.3.1 (2013-12-20)
 ------------------
 
 - Nothing changed yet.

@@ -1,0 +1,15 @@
+include *.py
+include *.txt
+include _plone4.cfg
+include base.cfg
+include plone3.3.cfg
+recursive-include docs *.EUPL
+recursive-include docs *.GPL
+recursive-include docs *.txt
+recursive-include src *.css
+recursive-include src *.kss
+recursive-include src *.pt
+recursive-include src *.py
+recursive-include src *.txt
+recursive-include src *.xml
+recursive-include src *.zcml
